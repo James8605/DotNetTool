@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace XGS.James.Tool
+namespace DotNetTool
 {
     public static class GenericHelper
     {

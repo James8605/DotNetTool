@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XGS.James.Tool
+namespace DotNetTool
 {
     public class CRC16Helper
     {

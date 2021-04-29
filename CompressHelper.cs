@@ -5,8 +5,7 @@ using SharpCompress.Common;
 using SharpCompress.Readers;
 using SharpCompress.Writers;
 
-
-namespace XGS.James.Tool
+namespace DotNetTool
 {
     public class CompressHelper
     {

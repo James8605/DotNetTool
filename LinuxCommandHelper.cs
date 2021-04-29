@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Pipes;
 
-namespace XGS.James.Tool
+namespace DotNetTool
 {
     public class LinuxCommandHelper
     {

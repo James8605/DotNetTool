@@ -1,21 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
 using System.Linq;
 using System.Security.Cryptography;
 
-
-namespace XGS.James.Tool
+namespace DotNetTool
 {
     public static class FileHelper
     {
         public static void WriteTxtFileWithLock(string path, string content)
         {
-            using FileStream fs = new FileStream(path, FileMode.Create,
+            using FileStream fs = new(path, FileMode.Create,
                     FileAccess.ReadWrite, FileShare.ReadWrite);
 
-            using StreamWriter file = new StreamWriter(fs, new System.Text.UTF8Encoding(false));
+            using StreamWriter file = new(fs, new System.Text.UTF8Encoding(false));
 
             file.Write(content);
             file.Flush();
@@ -24,7 +22,7 @@ namespace XGS.James.Tool
 
         public static void WriteBinFileWithLock(string path, byte[] bin_arr)
         {
-            using FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
+            using FileStream fs = new(path, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
 
             fs.Write(bin_arr, 0, bin_arr.Length);
         }
@@ -48,7 +46,7 @@ namespace XGS.James.Tool
 
         public static byte[] ReadFile2Bytes(string file)
         {
-            using FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            using FileStream fs = new(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
             int length = Convert.ToInt32(fs.Length);
             byte[] bytes = new byte[length];

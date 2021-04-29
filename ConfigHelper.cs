@@ -6,13 +6,12 @@ using System.Text.Json;
 
 using Microsoft.Extensions.Configuration;
 
-
-namespace XGS.James.Tool
+namespace DotNetTool
 {
     public static class ConfigHelper
     {
         private static readonly object _lock = new object();
-        private static IConfiguration Config { get; set; }
+        private static IConfiguration Config { get; }
 
         static ConfigHelper()
         {
@@ -91,6 +90,7 @@ namespace XGS.James.Tool
                     .Deserialize<Dictionary<string, object>>(o[key].ToString());
                 o[key] = TraverseJson2Update(jsonObj, keys, value);
             }
+
             return o;
 
         }

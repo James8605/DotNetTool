@@ -10,8 +10,7 @@ using Oracle.ManagedDataAccess.Client;
 
 using PetaPoco;
 
-
-namespace XGS.James.Tool
+namespace DotNetTool
 {
     internal class OraCol
     {
@@ -87,7 +86,7 @@ namespace XGS.James.Tool
         }
 
         public static async Task<object> InsertWithCreateAsync(object poco, string db_name, string table,
-            string primary_key, Database db, string create_sql)
+            string primary_key, string create_sql)
         {
             try
             {
@@ -96,7 +95,7 @@ namespace XGS.James.Tool
             catch
             {
 
-                if (!TableExists(db_name, table, db))
+                if (!TableExists(db_name, table))
                 {
                     db.Execute(create_sql.ToUpper());
                     return await db.InsertAsync($"{db_name}.{table}", primary_key, poco);
@@ -108,7 +107,7 @@ namespace XGS.James.Tool
             }
         }
 
-        public static bool TableExists(string db_name, string table, PetaPoco.Database db)
+        public static bool TableExists(string db_name, string table)
         {
             var sql = $"SELECT COUNT(*) FROM ALL_TABLES WHERE " +
                                               $"OWNER = '{db_name}' " +
@@ -118,11 +117,11 @@ namespace XGS.James.Tool
             return 1 == db.First<int>(sql.ToUpper());
         }
 
-        public static void CreateTableIfNotExists(string db_name, string table_name, string createSQL, PetaPoco.Database db)
+        public static void CreateTableIfNotExists(string db_name, string table_name, string createSQL)
         {
             lock (_locker)
             {
-                if (!TableExists(db_name, table_name, db))
+                if (!TableExists(db_name, table_name))
                 {
                     db.Execute(createSQL.ToUpper());
                 }
@@ -162,7 +161,8 @@ namespace XGS.James.Tool
 
             var bulk_type = _type_dict[typeof(T)];
 
-            DataTable dt = MakeDataTable(source, bulk_type).AsEnumerable().Distinct().CopyToDataTable();//remove duplicates
+            DataTable dt = MakeDataTable(source, bulk_type).AsEnumerable()
+                .Distinct().CopyToDataTable();//remove duplicates
 
             SaveUsingOracleBulkCopy(db_name, table_name, dt, bulk_type.cols);
         }
@@ -226,7 +226,8 @@ namespace XGS.James.Tool
                         });
                     }
                 }
-                _type_dict[typeof(T)] = new BulKType { accessor = accessor, cols = col_ls };
+
+                _type_dict.TryAdd(typeof(T), new BulKType { accessor = accessor, cols = col_ls });
             }
         }
     }

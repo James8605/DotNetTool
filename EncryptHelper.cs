@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace XGS.James.Tool
+namespace DotNetTool
 {
     public static class EncryptHelper
     {

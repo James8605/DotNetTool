@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace XGS.James.Tool
+namespace DotNetTool
 {
     public class TextEncodeHelper
     {
