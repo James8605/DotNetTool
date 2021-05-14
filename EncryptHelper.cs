@@ -14,11 +14,11 @@ namespace DotNetTool
             byte[] key = Encoding.Unicode.GetBytes(_key);
             byte[] data = Encoding.Unicode.GetBytes(str);
 
-            using DESCryptoServiceProvider descsp = new DESCryptoServiceProvider();
+            using DESCryptoServiceProvider descsp = new();
 
-            using MemoryStream MStream = new MemoryStream();
+            using MemoryStream MStream = new();
 
-            using CryptoStream CStream = new CryptoStream(MStream,
+            using CryptoStream CStream = new(MStream,
                 descsp.CreateEncryptor(key, key), CryptoStreamMode.Write);
 
             CStream.Write(data, 0, data.Length);
@@ -33,11 +33,11 @@ namespace DotNetTool
             byte[] key = Encoding.Unicode.GetBytes(_key);
             byte[] data = Convert.FromBase64String(str);
 
-            using DESCryptoServiceProvider descsp = new DESCryptoServiceProvider();
+            using DESCryptoServiceProvider descsp = new();
 
-            using MemoryStream MStream = new MemoryStream();
+            using MemoryStream MStream = new();
 
-            using CryptoStream CStream = new CryptoStream(MStream,
+            using CryptoStream CStream = new(MStream,
                 descsp.CreateDecryptor(key, key), CryptoStreamMode.Write);
 
             CStream.Write(data, 0, data.Length);
