@@ -23,7 +23,7 @@ namespace DotNetTool
         public static int GetChineseCharNumber(string str)
         {
             int count = 0;
-            Regex regex = new Regex(@"^[\u4E00-\u9FA5]{0,}$");
+            Regex regex = new(@"^[\u4E00-\u9FA5]{0,}$");
 
             for (int i = 0; i < str.Length; i++)
             {
