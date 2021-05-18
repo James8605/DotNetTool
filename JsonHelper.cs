@@ -13,7 +13,15 @@ namespace DotNetTool
             _options = new JsonSerializerOptions
             {
                 WriteIndented = true,
-                Encoder = JavaScriptEncoder.Create(System.Text.Unicode.UnicodeRanges.All)
+                Encoder = JavaScriptEncoder.Create(System.Text.Unicode.UnicodeRanges.All),
+                PropertyNamingPolicy = null
+            };
+
+            _options_without_indent = new JsonSerializerOptions
+            {
+                WriteIndented = false,
+                Encoder = JavaScriptEncoder.Create(System.Text.Unicode.UnicodeRanges.All),
+                PropertyNamingPolicy = null
             };
 
             _options_without_indent = new JsonSerializerOptions

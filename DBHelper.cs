@@ -65,6 +65,8 @@ namespace DotNetTool
                 var config = ConfigHelper.GetBool("dev") ? "db:dev" : "db:pro";
                 return GetDB(config);
             }
+
+
         }
 
         public static Database GetDB(string config)
