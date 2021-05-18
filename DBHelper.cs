@@ -62,7 +62,8 @@ namespace DotNetTool
         {
             get
             {
-                return new Database(connect_str, provider);
+                var config = ConfigHelper.GetBool("dev") ? "db:dev" : "db:pro";
+                return GetDB(config);
             }
         }
 

@@ -67,7 +67,7 @@ namespace DotNetTool
 
         public static string GetUUID()
         {
-            return Guid.NewGuid().ToString().Replace("-", "").ToUpper();
+            return Guid.NewGuid().ToString().ToUpper();
         }
 
 
