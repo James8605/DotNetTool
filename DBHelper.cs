@@ -32,7 +32,7 @@ namespace DotNetTool
         private static string _connect_str = string.Empty;
         private static string _provider = string.Empty;
         private static readonly ConcurrentDictionary<System.Type, BulKType> _type_dict = new();
-        private static readonly log4net.ILog _logger = log4net.LogManager.GetLogger(typeof(DBHelper));
+        private static readonly PetaPoco.Database _db;
 
         public static string connect_str
         {
@@ -62,11 +62,15 @@ namespace DotNetTool
         {
             get
             {
-                var config = ConfigHelper.GetBool("dev") ? "db:dev" : "db:pro";
-                return GetDB(config);
+                return new Database(connect_str, provider);
+
             }
+        }
 
-
+        public static Database GetNewDB()
+        {
+            var config = ConfigHelper.GetBool("dev") ? "db:dev" : "db:pro";
+            return GetDB(config);
         }
 
         public static Database GetDB(string config)
