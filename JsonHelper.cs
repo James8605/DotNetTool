@@ -23,12 +23,6 @@ namespace DotNetTool
                 Encoder = JavaScriptEncoder.Create(System.Text.Unicode.UnicodeRanges.All),
                 PropertyNamingPolicy = null
             };
-
-            _options_without_indent = new JsonSerializerOptions
-            {
-                WriteIndented = false,
-                Encoder = JavaScriptEncoder.Create(System.Text.Unicode.UnicodeRanges.All)
-            };
         }
 
         public static string Object2JsonStr(object model)
