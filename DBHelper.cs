@@ -155,7 +155,7 @@ namespace DotNetTool
             bulk.WriteToServer(dt);
         }
 
-        public static void BulkCopy2TempTableRemovingDuplicates<T>(List<T> source, string db_name, string table_name)
+        public static void BulkCopy2TempTable<T>(List<T> source, string db_name, string table_name)
         {
             db.Execute($"truncate table {db_name}.{table_name}".ToUpper());
 
@@ -168,8 +168,7 @@ namespace DotNetTool
 
             var bulk_type = _type_dict[typeof(T)];
 
-            DataTable dt = MakeDataTable(source, bulk_type).AsEnumerable()
-                .Distinct().CopyToDataTable();//remove duplicates
+            DataTable dt = MakeDataTable(source, bulk_type);
 
             SaveUsingOracleBulkCopy(db_name, table_name, dt, bulk_type.cols);
         }
