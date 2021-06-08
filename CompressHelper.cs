@@ -1,9 +1,9 @@
-﻿using System.IO;
-using System.IO.Compression;
-
-using SharpCompress.Common;
+﻿using SharpCompress.Common;
 using SharpCompress.Readers;
 using SharpCompress.Writers;
+
+using System.IO;
+using System.IO.Compression;
 
 namespace DotNetTool
 {
